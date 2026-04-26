@@ -85,6 +85,14 @@ nav {
     letter-spacing: -0.5px;
     text-decoration: none;
     color: var(--text-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-icon {
+    height: 80px;
+    width: auto;
 }
 
 .nav-links-container {
