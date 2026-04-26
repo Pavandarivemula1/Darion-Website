@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Darion Technologies</title>
+    <meta name="description" content="Start your digital transformation with Darion Technologies. Book a discovery call or reach out directly via email or WhatsApp.">
+    <meta name="keywords" content="Contact Darion Technologies, Digital Transformation Consultation India, Book Discovery Call">
+    <meta property="og:title" content="Contact Us | Darion Technologies">
+    <meta property="og:description" content="Let's Build Something That Works.">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/scripts.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contactForm');
+            const successMsg = document.getElementById('successMsg');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const message = document.getElementById('message').value.trim();
+                    if (!name || !email || !message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    form.style.display = 'none';
+                    successMsg.style.display = 'block';
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <svg class="decoration star-1" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1"><path d="M12 2v20M2 12h20M4.929 4.929l14.142 14.142M4.929 19.071L19.071 4.929"/></svg>
+    <svg class="decoration star-2" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1"><path d="M12 2v20M2 12h20M4.929 4.929l14.142 14.142M4.929 19.071L19.071 4.929"/></svg>
+    <div class="decoration curve-line"></div>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="logo">Darion Technologies</a>
+            <div class="nav-links-container">
+                <div class="nav-col">
+                    <a href="index.html">Home</a>
+                    <a href="generator.html">Services</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="nav-col">
+                    <a href="about.html">About Us</a>
+                    <a href="features.html">Why Us</a>
+                    <a href="collection.html">Case Studies</a>
+                    <a href="careers.html">Careers</a>
+                </div>
+            </div>
+            <button class="menu-btn">Menu <span>&#9662;</span></button>
+        </nav>
+
+        <div class="about-header" style="text-align: center; margin: 0 auto 4rem; width: 100%;">
+            <p class="subtitle">Get in Touch</p>
+            <h1>Let's Build Something That Works.</h1>
+        </div>
+
+        <div class="contact-layout">
+            <!-- Form -->
+            <div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" placeholder="e.g. Rahul Mehta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="business">Business Name</label>
+                        <input type="text" id="business" name="business" placeholder="e.g. Mehta Traders Pvt. Ltd.">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" name="service">
+                            <option value="" disabled selected>Select a service</option>
+                            <option value="web">Custom Software / Web Platform</option>
+                            <option value="ecommerce">E-Commerce Solution</option>
+                            <option value="ai">AI & Automation Systems</option>
+                            <option value="marketing">Growth Marketing</option>
+                            <option value="partnership">Full Growth Partnership</option>
+                            <option value="other">Other / Not Sure Yet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tell Us About Your Business *</label>
+                        <textarea id="message" name="message" placeholder="What's your biggest digital challenge right now? What outcome are you looking for?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" id="submitBtn" style="align-self: flex-start;">Send Message</button>
+                </form>
+
+                <div id="successMsg" style="display:none; padding: 3rem; background: var(--accent-light); border-radius: 8px; text-align: center;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Message Received ✓</h3>
+                    <p style="color: var(--text-gray); line-height: 1.6;">Thank you for reaching out. Our team will review your message and get back to you within <strong>24 business hours</strong>. If it's urgent, WhatsApp us directly.</p>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="contact-info">
+                <h2>We respond within 24 hours.</h2>
+                <p style="color: var(--text-gray); font-size: 0.9rem; line-height: 1.6;">Drop a message, book a call, or reach us directly. We're a lean, fast team — you'll always speak to someone who can make decisions.</p>
+
+                <span class="sla-badge">⚡ Avg. response time: under 4 hours</span>
+
+                <div class="info-item">
+                    <span class="info-label">Email</span>
+                    <span class="info-value">hello@dariontech.in</span>
+                    <span class="info-sub">For project inquiries and partnerships</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">WhatsApp</span>
+                    <span class="info-value">+91 98XXX XXXXX</span>
+                    <span class="info-sub">For urgent queries and quick consultations</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Location</span>
+                    <span class="info-value">India (Remote-First)</span>
+                    <span class="info-sub">Serving clients nationally and globally</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Business Hours</span>
+                    <span class="info-value">Mon – Sat, 9 AM – 7 PM IST</span>
+                    <span class="info-sub">We're often available outside these hours too</span>
+                </div>
+
+                <div style="padding: 1.5rem; background: #e8e8e8; border-radius: 8px;">
+                    <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">What happens after you submit?</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-gray); line-height: 1.5;">1. We review your message and business context.<br>2. We schedule a free 30-min discovery call.<br>3. We present a scoped proposal with timeline + cost.<br>4. You decide — zero pressure, zero obligation.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="text-decoration: none; color: var(--text-dark);">Darion Technologies</a>
+                <p>An engineering-first digital transformation company. Subsidiary of Darion Group — Registered MSME, India.</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4>Services</h4>
+                    <a href="generator.html">Custom Software</a>
+                    <a href="generator.html">E-Commerce</a>
+                    <a href="generator.html">AI & Automation</a>
+                    <a href="generator.html">Growth Marketing</a>
+                </div>
+                <div class="link-column">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html" class="active">Contact</a>
+                </div>
+                <div class="link-column">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Darion Technologies. A subsidiary of Darion Group. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenuBtn">&times;</button>
+        <div class="mobile-nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="generator.html">Services</a>
+            <a href="features.html">Why Us</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="collection.html">Case Studies</a>
+            <a href="blog.html">Blog</a>
+            <a href="careers.html">Careers</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+    </div>
+</body>
+</html>
