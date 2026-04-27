@@ -99,6 +99,15 @@ nav {
     display: none;
 }
 
+@media (min-width: 1025px) {
+    .nav-links-container {
+        display: flex;
+        gap: 4rem;
+        margin-left: auto;
+        margin-right: 4rem;
+    }
+}
+
 .nav-col {
     display: flex;
     flex-direction: column;
@@ -1406,5 +1415,31 @@ p.body-text {
     .job-item {
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem !important;
+        letter-spacing: -1px;
+        margin-bottom: 1.5rem;
+    }
+    h2 {
+        font-size: 1.3rem !important;
+        letter-spacing: -0.5px;
+        margin-bottom: 1rem;
+    }
+    h3, .card-1 h3, .about-card h3, .service-card h3, .diff-card h3, .pricing-card h3, .open-cta h3, .job-info h3, .culture-card h3 {
+        font-size: 0.95rem !important;
+        margin-bottom: 0.5rem;
+    }
+    .stats h2 {
+        font-size: 1.8rem !important;
+    }
+    .stat-value {
+        font-size: 1.8rem !important;
+    }
+    .pricing-price {
+        font-size: 1.4rem !important;
     }
 }
