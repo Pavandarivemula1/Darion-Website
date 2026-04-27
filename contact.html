@@ -33,8 +33,8 @@
         /* Page-specific: Contact */
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 6rem;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 5rem;
             align-items: flex-start;
             max-width: 1100px;
             margin: 0 auto 4rem;
@@ -51,42 +51,78 @@
         .info-block h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-dark); }
         .info-block p, .info-block a { color: var(--text-gray); font-size: 0.95rem; text-decoration: none; transition: color 0.3s; }
         .info-block a:hover { color: var(--text-dark); }
+
+        /* --- Form Card --- */
         .contact-form-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 100%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.65) 100%);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.4);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05), inset 0 2px 10px rgba(255,255,255,0.5);
-            border-radius: 12px;
-            padding: 3rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06), inset 0 2px 10px rgba(255,255,255,0.5);
+            border-radius: 16px;
+            padding: 2.5rem;
             width: 100%;
         }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-dark); }
-        input, textarea {
+        .form-section-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #aaa;
+            margin: 1.5rem 0 0.75rem;
+        }
+        .form-section-label:first-child { margin-top: 0; }
+        .form-group { margin-bottom: 1.1rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+        label { display: block; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-dark); letter-spacing: 0.3px; }
+        input, textarea, select {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem 1rem;
             border-radius: 8px;
             border: 1px solid rgba(0,0,0,0.1);
-            background: rgba(255,255,255,0.5);
-            font-size: 0.95rem;
+            background: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
             font-weight: 500;
             color: var(--text-dark);
             outline: none;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
         }
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             background: #fff;
-            border-color: var(--text-gray);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-color: #1f1f2e;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
-        textarea { resize: vertical; min-height: 150px; }
+        select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+        textarea { resize: vertical; min-height: 100px; }
+
+        /* Chip selectors */
+        .chip-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .chip {
+            padding: 0.45rem 1rem;
+            border-radius: 30px;
+            border: 1.5px solid rgba(0,0,0,0.12);
+            background: rgba(255,255,255,0.7);
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .chip:hover { border-color: #1f1f2e; color: #1f1f2e; background: #fff; }
+        .chip.active { background: #1f1f2e; color: #fff; border-color: #1f1f2e; }
+
+        /* Divider */
+        .form-divider { border: none; border-top: 1px solid rgba(0,0,0,0.07); margin: 1.5rem 0; }
+
+        /* Submit button */
         .btn-primary {
             background: linear-gradient(135deg, #1f1f2e 0%, #0a0a14 100%);
             color: #fff;
-            padding: 1.2rem 2.5rem;
+            padding: 1rem 2.5rem;
             border-radius: 40px;
             border: none;
             font-size: 0.7rem;
@@ -96,48 +132,24 @@
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.3s, opacity 0.2s;
             width: 100%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.2);
-            margin-top: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.15);
+            margin-top: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.6rem;
         }
-        .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.2); }
+        .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
         .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-        .spinner {
-            width: 16px; height: 16px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-            display: none;
-        }
+        .spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; display: none; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .form-alert {
-            display: none;
-            padding: 1rem 1.25rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-top: 1.25rem;
-            text-align: center;
-        }
-        .form-alert.success {
-            background: #e6f9f0;
-            color: #0e7a4a;
-            border: 1px solid #b2e8cf;
-        }
-        .form-alert.error {
-            background: #fff0f0;
-            color: #c0392b;
-            border: 1px solid #f5c6c6;
-        }
-        @media (max-width: 1024px) {
-            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-        }
+        .form-alert { display: none; padding: 0.9rem 1.1rem; border-radius: 8px; font-size: 0.88rem; font-weight: 600; margin-top: 1rem; text-align: center; }
+        .form-alert.success { background: #e6f9f0; color: #0e7a4a; border: 1px solid #b2e8cf; }
+        .form-alert.error   { background: #fff0f0; color: #c0392b; border: 1px solid #f5c6c6; }
+
+        @media (max-width: 1024px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
         @media (max-width: 600px) {
-            .form-row { grid-template-columns: 1fr; gap: 1rem; }
+            .form-row, .form-row-3 { grid-template-columns: 1fr; gap: 0.9rem; }
             .contact-form-card { padding: 1.5rem; }
         }
     </style>
@@ -216,15 +228,17 @@
                         <h3>Technical Support</h3>
                         <a href="mailto:support@tech.darion.in">support@tech.darion.in</a>
                     </div>
-                    <div class="info-block">
-                        <h3>Headquarters</h3>
-                        <p>124 Innovation Drive<br>San Francisco, CA 94105</p>
-                    </div>
                 </div>
             </div>
 
             <div class="contact-form-card">
                 <form id="contactForm">
+
+                    <!-- Hidden fields written by chip selections -->
+                    <input type="hidden" name="service" id="fieldService">
+                    <input type="hidden" name="budget" id="fieldBudget">
+
+                    <p class="form-section-label">You &amp; Your Company</p>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName">First Name</label>
@@ -235,26 +249,68 @@
                             <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="email">Work Email</label>
-                        <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Work Email</label>
+                            <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone (optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">Company / Organisation</label>
+                            <input type="text" id="company" name="company" placeholder="Acme Corp">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Your Role</label>
+                            <select id="role" name="role">
+                                <option value="" disabled selected>Select role</option>
+                                <option>Founder / CEO</option>
+                                <option>CTO / Tech Lead</option>
+                                <option>Product Manager</option>
+                                <option>Marketing / Growth</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
                     </div>
 
+                    <hr class="form-divider">
+                    <p class="form-section-label">What do you need?</p>
                     <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" placeholder="How can we help?" required>
+                        <label>Service</label>
+                        <div class="chip-group" id="serviceChips">
+                            <span class="chip" data-value="Custom Software">Custom Software</span>
+                            <span class="chip" data-value="E-Commerce">E-Commerce</span>
+                            <span class="chip" data-value="AI &amp; Automation">AI &amp; Automation</span>
+                            <span class="chip" data-value="Growth Marketing">Growth Marketing</span>
+                            <span class="chip" data-value="Enterprise Plan">Enterprise Plan</span>
+                            <span class="chip" data-value="Other">Other</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Estimated Budget</label>
+                        <div class="chip-group" id="budgetChips">
+                            <span class="chip" data-value="Under ₹1L">&lt; ₹1L</span>
+                            <span class="chip" data-value="₹1L – ₹5L">₹1L – ₹5L</span>
+                            <span class="chip" data-value="₹5L – ₹20L">₹5L – ₹20L</span>
+                            <span class="chip" data-value="₹20L+">₹20L+</span>
+                            <span class="chip" data-value="Not sure">Not sure</span>
+                        </div>
                     </div>
 
+                    <hr class="form-divider">
+                    <p class="form-section-label">Tell us more</p>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Tell us a little bit about your project..."
-                            required></textarea>
+                        <textarea id="message" name="message" placeholder="Briefly describe your project or question..." required></textarea>
                     </div>
 
                     <button type="submit" id="contactSubmitBtn" class="btn-primary">
                         <span class="spinner" id="contactSpinner"></span>
-                        <span id="contactBtnText">Send Message</span>
+                        <span id="contactBtnText">Send Message &rarr;</span>
                     </button>
                     <div class="form-alert" id="contactAlert"></div>
                 </form>
@@ -324,32 +380,53 @@
     (function () {
         var CONTACT_FORM_ENDPOINT = 'https://formspree.io/f/mlgakapo';
 
+        // --- Chip selector logic ---
+        function initChips(groupId, hiddenFieldId) {
+            var group = document.getElementById(groupId);
+            var field = document.getElementById(hiddenFieldId);
+            group.querySelectorAll('.chip').forEach(function (chip) {
+                chip.addEventListener('click', function () {
+                    var wasActive = chip.classList.contains('active');
+                    group.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+                    if (!wasActive) {
+                        chip.classList.add('active');
+                        field.value = chip.getAttribute('data-value');
+                    } else {
+                        field.value = '';
+                    }
+                });
+            });
+        }
+        initChips('serviceChips', 'fieldService');
+        initChips('budgetChips',  'fieldBudget');
+
+        // --- Form submission ---
         var form    = document.getElementById('contactForm');
         var btn     = document.getElementById('contactSubmitBtn');
         var spinner = document.getElementById('contactSpinner');
         var btnTxt  = document.getElementById('contactBtnText');
-        var alert   = document.getElementById('contactAlert');
+        var alertEl = document.getElementById('contactAlert');
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            // Show loading state
             btn.disabled = true;
             spinner.style.display = 'block';
             btnTxt.textContent = 'Sending…';
-            alert.style.display = 'none';
-
-            var data = new FormData(form);
+            alertEl.style.display = 'none';
 
             fetch(CONTACT_FORM_ENDPOINT, {
                 method: 'POST',
-                body: data,
+                body: new FormData(form),
                 headers: { 'Accept': 'application/json' }
             })
             .then(function (res) {
                 if (res.ok) {
-                    alert.className = 'form-alert success';
-                    alert.textContent = "\u2705 Message sent! We\u0027ll be in touch within 24 hours.";
+                    alertEl.className = 'form-alert success';
+                    alertEl.textContent = '✅ Message sent! We\'ll be in touch within 24 hours.';
                     form.reset();
+                    document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('active');});
+                    document.getElementById('fieldService').value = '';
+                    document.getElementById('fieldBudget').value = '';
                 } else {
                     return res.json().then(function (body) {
                         throw new Error(body.errors ? body.errors.map(function(e){return e.message;}).join(', ') : 'Server error');
@@ -357,14 +434,14 @@
                 }
             })
             .catch(function (err) {
-                alert.className = 'form-alert error';
-                alert.textContent = '❌ Something went wrong: ' + err.message + '. Please email us at hello@tech.darion.in';
+                alertEl.className = 'form-alert error';
+                alertEl.textContent = '❌ Something went wrong. Please email hello@tech.darion.in';
             })
             .finally(function () {
                 btn.disabled = false;
                 spinner.style.display = 'none';
-                btnTxt.textContent = 'Send Message';
-                alert.style.display = 'block';
+                btnTxt.textContent = 'Send Message →';
+                alertEl.style.display = 'block';
             });
         });
     })();
