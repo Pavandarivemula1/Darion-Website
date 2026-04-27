@@ -102,6 +102,96 @@
             .perks-grid { grid-template-columns: 1fr; }
             .job-row { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
         }
+        /* --- Application Modal --- */
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(10,10,20,0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 540px;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to   { transform: translateY(0);   opacity: 1; }
+        }
+        .modal-close {
+            position: absolute; top: 1.25rem; right: 1.5rem;
+            background: none; border: none; font-size: 1.5rem;
+            cursor: pointer; color: #888; line-height: 1;
+        }
+        .modal-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem; color: #0a0a14; }
+        .modal-subtitle { font-size: 0.85rem; color: #888; margin-bottom: 1.75rem; }
+        .modal-input {
+            width: 100%; padding: 0.9rem 1rem;
+            border: 1px solid rgba(0,0,0,0.12);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            color: #1f1f2e;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+        .modal-input:focus { border-color: #1f1f2e; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .modal-input[type="file"] { padding: 0.6rem 1rem; cursor: pointer; }
+        .modal-btn {
+            background: linear-gradient(135deg, #1f1f2e 0%, #0a0a14 100%);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            border: none;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.3s, opacity 0.2s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .modal-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        .modal-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+        .modal-spinner {
+            width: 15px; height: 15px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .modal-alert {
+            display: none;
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .modal-alert.success { background: #e6f9f0; color: #0e7a4a; border: 1px solid #b2e8cf; }
+        .modal-alert.error   { background: #fff0f0; color: #c0392b; border: 1px solid #f5c6c6; }
     </style>
 
     <script type="application/ld+json">
@@ -120,7 +210,7 @@
         },
         "contactPoint": {
             "@type": "ContactPoint",
-            "email": "hello@darion.tech",
+            "email": "hello@tech.darion.in",
             "contactType": "customer support"
         },
         "sameAs": []
@@ -197,7 +287,7 @@
                         <span>Engineering</span> &bull; <span>Remote / San Francisco</span>
                     </div>
                 </div>
-                <a href="#" class="btn-outline">Apply Now</a>
+                <a onclick="openApplyModal(this)" data-job="Senior AI Engineer (Computer Vision)" class="btn-outline" href="#" style="cursor:pointer;">Apply Now</a>
             </div>
 
             <div class="job-row">
@@ -207,17 +297,17 @@
                         <span>Design</span> &bull; <span>Remote</span>
                     </div>
                 </div>
-                <a href="#" class="btn-outline">Apply Now</a>
+                <a onclick="openApplyModal(this)" data-job="Lead Product Designer (UI/UX)" class="btn-outline" href="#" style="cursor:pointer;">Apply Now</a>
             </div>
 
             <div class="job-row">
                 <div class="job-info">
-                    <h3 class="job-title">Frontend Developer (WebGL & Three.js)</h3>
+                    <h3 class="job-title">Frontend Developer (WebGL &amp; Three.js)</h3>
                     <div class="job-meta">
                         <span>Engineering</span> &bull; <span>Remote / London</span>
                     </div>
                 </div>
-                <a href="#" class="btn-outline">Apply Now</a>
+                <a onclick="openApplyModal(this)" data-job="Frontend Developer (WebGL & Three.js)" class="btn-outline" href="#" style="cursor:pointer;">Apply Now</a>
             </div>
 
             <div class="job-row">
@@ -227,9 +317,30 @@
                         <span>Marketing</span> &bull; <span>Remote</span>
                     </div>
                 </div>
-                <a href="#" class="btn-outline">Apply Now</a>
+                <a onclick="openApplyModal(this)" data-job="Developer Advocate" class="btn-outline" href="#" style="cursor:pointer;">Apply Now</a>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Application Modal -->
+    <div class="modal-overlay" id="applyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-card">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Apply for this role</h2>
+            <p class="modal-subtitle" id="modalSubtitle">We review every application within 5 business days.</p>
+            <form id="applyForm">
+                <input type="hidden" id="jobTitle" name="job_title" value="">
+                <input class="modal-input" type="text"  name="name"  placeholder="Full Name"     required>
+                <input class="modal-input" type="email" name="email" placeholder="Email Address" required>
+                <input class="modal-input" type="url"   name="linkedin" placeholder="LinkedIn profile URL (optional)">
+                <textarea class="modal-input" name="cover_letter" rows="4" placeholder="Brief cover letter or intro..."></textarea>
+                <button type="submit" class="modal-btn" id="applySubmitBtn">
+                    <span class="modal-spinner" id="applySpinner"></span>
+                    <span id="applyBtnText">Submit Application</span>
+                </button>
+                <div class="modal-alert" id="applyAlert"></div>
+            </form>
         </div>
     </div>
 
@@ -289,6 +400,71 @@
             <a href="contact.html">Contact</a>
         </div>
     </div>
+
+    <script>
+    var APPLY_FORM_ENDPOINT = 'https://formspree.io/f/mlgakapo';
+
+    var modal   = document.getElementById('applyModal');
+    var form    = document.getElementById('applyForm');
+    var btn     = document.getElementById('applySubmitBtn');
+    var spinner = document.getElementById('applySpinner');
+    var btnTxt  = document.getElementById('applyBtnText');
+    var alert   = document.getElementById('applyAlert');
+
+    function openApplyModal(el) {
+        var job = el.getAttribute('data-job') || 'Open Position';
+        document.getElementById('jobTitle').value = job;
+        document.getElementById('modalTitle').textContent = 'Apply: ' + job;
+        modal.classList.add('open');
+        form.reset();
+        alert.style.display = 'none';
+    }
+
+    document.getElementById('modalCloseBtn').addEventListener('click', function () {
+        modal.classList.remove('open');
+    });
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) modal.classList.remove('open');
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') modal.classList.remove('open');
+    });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        btn.disabled = true;
+        spinner.style.display = 'block';
+        btnTxt.textContent = 'Submitting...';
+        alert.style.display = 'none';
+
+        fetch(APPLY_FORM_ENDPOINT, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(function (res) {
+            if (res.ok) {
+                alert.className = 'modal-alert success';
+                alert.textContent = 'Application received! We will be in touch within 5 business days.';
+                form.reset();
+            } else {
+                return res.json().then(function (body) {
+                    throw new Error(body.errors ? body.errors.map(function(e){return e.message;}).join(', ') : 'Server error');
+                });
+            }
+        })
+        .catch(function (err) {
+            alert.className = 'modal-alert error';
+            alert.textContent = 'Something went wrong: ' + err.message + '. Email us at hello@tech.darion.in';
+        })
+        .finally(function () {
+            btn.disabled = false;
+            spinner.style.display = 'none';
+            btnTxt.textContent = 'Submit Application';
+            alert.style.display = 'block';
+        });
+    });
+    </script>
 </body>
 
 </html>

@@ -7,8 +7,8 @@
 
     <!-- Primary SEO -->
     <title>Contact Darion Technologies | Get in Touch</title>
-    <meta name="description" content="Contact Darion Technologies to discuss your digital transformation project. Reach us for custom software, AI automation, e-commerce, and enterprise solutions. hello@darion.tech">
-    <meta name="keywords" content="Contact Darion Technologies, Darion Technologies India, hello@darion.tech, Software Company India">
+    <meta name="description" content="Contact Darion Technologies to discuss your digital transformation project. Reach us for custom software, AI automation, e-commerce, and enterprise solutions. hello@tech.darion.in">
+    <meta name="keywords" content="Contact Darion Technologies, Darion Technologies India, hello@tech.darion.in, Software Company India">
     <meta name="author" content="Darion Technologies">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://tech.darion.in/contact.html">
@@ -94,12 +94,45 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.3s;
+            transition: transform 0.2s, box-shadow 0.3s, opacity 0.2s;
             width: 100%;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.2);
             margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.2); }
+        .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.2); }
+        .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        .spinner {
+            width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .form-alert {
+            display: none;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1.25rem;
+            text-align: center;
+        }
+        .form-alert.success {
+            background: #e6f9f0;
+            color: #0e7a4a;
+            border: 1px solid #b2e8cf;
+        }
+        .form-alert.error {
+            background: #fff0f0;
+            color: #c0392b;
+            border: 1px solid #f5c6c6;
+        }
         @media (max-width: 1024px) {
             .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
@@ -125,7 +158,7 @@
         },
         "contactPoint": {
             "@type": "ContactPoint",
-            "email": "hello@darion.tech",
+            "email": "hello@tech.darion.in",
             "contactType": "customer support"
         },
         "sameAs": []
@@ -177,11 +210,11 @@
                 <div class="info-blocks">
                     <div class="info-block">
                         <h3>General Inquiries</h3>
-                        <a href="mailto:hello@darion.tech">hello@darion.tech</a>
+                        <a href="mailto:hello@tech.darion.in">hello@tech.darion.in</a>
                     </div>
                     <div class="info-block">
                         <h3>Technical Support</h3>
-                        <a href="mailto:support@darion.tech">support@darion.tech</a>
+                        <a href="mailto:support@tech.darion.in">support@tech.darion.in</a>
                     </div>
                     <div class="info-block">
                         <h3>Headquarters</h3>
@@ -191,8 +224,7 @@
             </div>
 
             <div class="contact-form-card">
-                <form action="#" method="POST"
-                    onsubmit="event.preventDefault(); alert('Form submitted successfully!');">
+                <form id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName">First Name</label>
@@ -220,7 +252,11 @@
                             required></textarea>
                     </div>
 
-                    <button type="submit" class="btn-primary">Send Message</button>
+                    <button type="submit" id="contactSubmitBtn" class="btn-primary">
+                        <span class="spinner" id="contactSpinner"></span>
+                        <span id="contactBtnText">Send Message</span>
+                    </button>
+                    <div class="form-alert" id="contactAlert"></div>
                 </form>
             </div>
 
@@ -283,6 +319,56 @@
             <a href="contact.html">Contact</a>
         </div>
     </div>
+
+    <script>
+    (function () {
+        var CONTACT_FORM_ENDPOINT = 'https://formspree.io/f/mlgakapo';
+
+        var form    = document.getElementById('contactForm');
+        var btn     = document.getElementById('contactSubmitBtn');
+        var spinner = document.getElementById('contactSpinner');
+        var btnTxt  = document.getElementById('contactBtnText');
+        var alert   = document.getElementById('contactAlert');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Show loading state
+            btn.disabled = true;
+            spinner.style.display = 'block';
+            btnTxt.textContent = 'Sending…';
+            alert.style.display = 'none';
+
+            var data = new FormData(form);
+
+            fetch(CONTACT_FORM_ENDPOINT, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(function (res) {
+                if (res.ok) {
+                    alert.className = 'form-alert success';
+                    alert.textContent = "\u2705 Message sent! We\u0027ll be in touch within 24 hours.";
+                    form.reset();
+                } else {
+                    return res.json().then(function (body) {
+                        throw new Error(body.errors ? body.errors.map(function(e){return e.message;}).join(', ') : 'Server error');
+                    });
+                }
+            })
+            .catch(function (err) {
+                alert.className = 'form-alert error';
+                alert.textContent = '❌ Something went wrong: ' + err.message + '. Please email us at hello@tech.darion.in';
+            })
+            .finally(function () {
+                btn.disabled = false;
+                spinner.style.display = 'none';
+                btnTxt.textContent = 'Send Message';
+                alert.style.display = 'block';
+            });
+        });
+    })();
+    </script>
 </body>
 
 </html>
