@@ -4,9 +4,8 @@
     --bg-color: #f7f7fa;
     --text-dark: #111111;
     --text-gray: #888888;
-    --card-gap: 8px;
-    --accent: #4f46e5;
-    --accent-light: rgba(79, 70, 229, 0.08);
+    --accent: #111111;
+    --accent-light: rgba(17, 17, 17, 0.08);
 }
 
 * {
@@ -338,7 +337,7 @@ p.body-text {
 
 /* Card 2 */
 .card-2 {
-    background: linear-gradient(rgba(79,70,229,0.7), rgba(30,27,75,0.92)), #1f1f2e;
+    background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.92)), #1f1f2e;
     color: white;
 }
 
@@ -423,7 +422,7 @@ p.body-text {
     height: 400px;
     border-radius: 4px;
     background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0.1) 2px, transparent 2px, transparent 10px),
-        linear-gradient(160deg, #4f46e5 0%, #1e1b4b 100%);
+        linear-gradient(160deg, #111111 0%, #1f1f2e 100%);
     display: flex;
     align-items: center;
     justify-content: center;
