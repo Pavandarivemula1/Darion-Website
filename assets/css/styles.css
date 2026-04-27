@@ -495,6 +495,12 @@ p.body-text {
     margin-bottom: 5rem;
 }
 
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .service-card {
     background: #fff;
     border: 1px solid rgba(0,0,0,0.06);
@@ -507,25 +513,33 @@ p.body-text {
 }
 
 .service-card:hover {
-    box-shadow: 0 8px 32px rgba(79,70,229,0.08);
-    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    transform: translateY(-2px);
 }
 
 .service-icon {
     width: 48px;
     height: 48px;
     border-radius: 12px;
-    background: var(--accent-light);
+    background: #f7f7fa;
+    border: 1px solid rgba(0,0,0,0.04);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.corp-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--text-dark);
 }
 
 .service-card h3 {
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: -0.3px;
+    color: var(--text-dark);
 }
 
 .service-card p {
@@ -543,7 +557,9 @@ p.body-text {
     align-self: flex-start;
 }
 
-.service-card a:hover { text-decoration: underline; }
+.service-card a:hover {
+    text-decoration: underline;
+}
 
 /* ──────────────────────────────────────────
    PROCESS / EVOLUTION STRIP
@@ -596,11 +612,13 @@ p.body-text {
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--text-gray);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.process-step.active .step-dot {
-    background: var(--accent);
-    border-color: var(--accent);
+.process-step.active .step-dot,
+.process-step:hover .step-dot {
+    background: var(--text-dark);
+    border-color: var(--text-dark);
     color: #fff;
 }
 
@@ -615,6 +633,23 @@ p.body-text {
     color: var(--text-gray);
     line-height: 1.4;
     max-width: 140px;
+}
+
+@media (max-width: 768px) {
+    .process-steps {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .process-steps::before {
+        top: 0; left: 24px; right: auto; bottom: 0;
+        width: 1px; height: 100%;
+    }
+    .process-step {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+    }
+    .process-step p { max-width: 100%; }
 }
 
 /* ──────────────────────────────────────────

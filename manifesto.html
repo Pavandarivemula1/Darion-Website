@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darion Technologies - Expanded Service Manifest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #e8ecef;
+      --paper-color: #ffffff;
+      --text-main: #111111;
+      --text-muted: #555555;
+      --accent: #0850D4;
+      --border-color: #000000;
+      --border-light: #e0e0e0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 10pt;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem;
+      gap: 3rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Physical A4 Page Styling */
+    .a4-page {
+      background-color: var(--paper-color);
+      width: 210mm;
+      min-height: 297mm;
+      padding: 25.4mm;
+      /* 1 inch margins */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Letterhead / Header */
+    .letterhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo-svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--text-main);
+    }
+
+    .company-name {
+      font-size: 15pt;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .doc-type {
+      font-size: 8pt;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+
+    .letterhead-right {
+      text-align: right;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 8.5pt;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Document Body */
+    .doc-body {
+      flex-grow: 1;
+    }
+
+    .doc-title {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .doc-intro {
+      font-size: 10.5pt;
+      color: var(--text-muted);
+      text-align: justify;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+      max-width: 95%;
+    }
+
+    /* Service Categories */
+    .category-block {
+      margin-bottom: 3rem;
+      break-inside: avoid;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+
+    .cat-icon-wrap {
+      width: 36px;
+      height: 36px;
+      background-color: var(--text-main);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+    }
+
+    .cat-icon-wrap svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .cat-title-group {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+
+    .cat-num {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .cat-title {
+      font-size: 14pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Service Lists */
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border-light);
+    }
+
+    .service-name {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+    }
+
+    .service-desc {
+      font-size: 9.5pt;
+      color: var(--text-muted);
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    /* Footer / Page Numbers */
+    .doc-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.5rem;
+      margin-top: auto;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 8pt;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background-color: transparent;
+        padding: 0;
+        gap: 0;
+      }
+
+      .a4-page {
+        box-shadow: none;
+        margin: 0;
+        width: 210mm;
+        height: 297mm;
+        page-break-after: always;
+      }
+    }
+
+    /* Mobile Viewing */
+    @media (max-width: 850px) {
+      .a4-page {
+        width: 100%;
+        min-height: auto;
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="a4-page">
+    <header class="letterhead">
+      <div class="brand-group">
+        <svg class="brand-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 22h20L12 2zm0 6l5.5 11h-11L12 8z" />
+        </svg>
+        <div class="letterhead-left">
+          <div class="company-name">Darion Technologies</div>
+          <div class="doc-type">Capabilities Overview & Briefing</div>
+        </div>
+      </div>
+      <div class="letterhead-right">
+        <div>REF: DT-TECH-01</div>
+        <div>ISSUED: APR 2026</div>
+      </div>
+    </header>
+
+    <main class="doc-body">
+      <h1 class="doc-title">Technology Services Manifest</h1>
+      <p class="doc-intro">This document details the exhaustive technical capabilities provided by Darion Technologies.
+        Each division is engineered to solve complex operational bottlenecks, scale revenue operations, and completely
+        modernize legacy corporate infrastructure. Our approach is purely mathematical, focusing on speed, structural
+        integrity, and automation.</p>
+
+      <div class="category-block">
+        <div class="category-header">
+          <div class="cat-icon-wrap">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+            </svg>
+          </div>
+          <div class="cat-title-group">
+            <span class="cat-num">01.</span>
+            <h2 class="cat-title">Web & Digital Architecture</h2>
+          </div>
+        </div>
+        <ul class="service-list">
+          <li class="service-item">
+            <span class="service-name">Corporate Platform Engineering</span>
+            <span class="service-desc">We build enterprise-grade websites that act as the digital anchor for your brand.
+              Far beyond simple brochures, these are highly secure, blazing-fast environments engineered to establish
+              absolute industry authority and build immediate trust with high-ticket clients.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">High-Velocity Conversion Landing Pages</span>
+            <span class="service-desc">Single-page deployments stripped of distractions and scientifically structured to
+              do one thing: convert paid traffic into qualified leads. Every button placement and text block is
+              optimized to maximize your advertising ROI.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Dynamic Content Management (CMS)</span>
+            <span class="service-desc">We liberate your marketing team from relying on developers. We integrate robust
+              CMS frameworks (like headless architectures) allowing authorized staff to publish blogs, update services,
+              and change images with zero coding knowledge required.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">E-Commerce Infrastructure</span>
+            <span class="service-desc">Deployment of scalable digital storefronts capable of handling thousands of
+              concurrent users. Features include military-grade encrypted payment gateways, automated inventory routing,
+              dynamic tax calculation, and seamless user account matrices.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Legacy Performance Optimization</span>
+            <span class="service-desc">A slow website bleeds revenue. We conduct deep structural audits of your existing
+              platforms, refactoring bloated code, compressing asset delivery, and restructuring databases to pass
+              Google's strict Core Web Vitals, immediately boosting SEO ranking.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="category-block">
+        <div class="category-header">
+          <div class="cat-icon-wrap">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 002 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z" />
+            </svg>
+          </div>
+          <div class="cat-title-group">
+            <span class="cat-num">02.</span>
+            <h2 class="cat-title">Proprietary Software Engineering</h2>
+          </div>
+        </div>
+        <ul class="service-list">
+          <li class="service-item">
+            <span class="service-name">Human Resource Systems (HRMS)</span>
+            <span class="service-desc">Off-the-shelf HR tools are rigid. We build custom internal portals like
+              'EmployPath' tailored precisely to your company's hierarchy. Automate attendance tracking, calculate
+              complex payroll logic, and generate workforce performance analytics automatically.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Client Management (CRM) Architecture</span>
+            <span class="service-desc">Generic CRMs force you to change how you sell. We engineer bespoke databases that
+              perfectly mirror your unique sales funnels. Track every interaction, automate follow-ups, and provide your
+              sales team with a tool they will actually want to use.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Secure Communication Protocols</span>
+            <span class="service-desc">Public chat applications are massive security liabilities. We develop 'Two Sum'
+              and similar encrypted, closed-loop communication tools. These are strictly private environments, often
+              disguised as standard utilities, ensuring absolute confidentiality for executives.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Progressive Web Applications (PWA)</span>
+            <span class="service-desc">Bypass the expensive app store monopolies. We build advanced web applications
+              that users can install directly from their browser to their phone's home screen. They function offline,
+              send push notifications, and feel exactly like native apps.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Deep API & Systems Integration</span>
+            <span class="service-desc">Silos destroy efficiency. We engineer stable connections between your proprietary
+              software and external global services. Whether it's syncing your CRM with Twilio for SMS, Stripe for
+              payments, or AWS for storage, we make your systems communicate flawlessly.</span>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <footer class="doc-footer">
+      <div>CONFIDENTIAL & PROPRIETARY DOCUMENT</div>
+      <div>PAGE 01 OF 03</div>
+    </footer>
+  </div>
+
+  <div class="a4-page">
+    <header class="letterhead">
+      <div class="brand-group">
+        <svg class="brand-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 22h20L12 2zm0 6l5.5 11h-11L12 8z" />
+        </svg>
+        <div class="letterhead-left">
+          <div class="company-name">Darion Technologies</div>
+          <div class="doc-type">Capabilities Overview & Briefing</div>
+        </div>
+      </div>
+      <div class="letterhead-right">
+        <div>REF: DT-TECH-01</div>
+        <div>ISSUED: APR 2026</div>
+      </div>
+    </header>
+
+    <main class="doc-body">
+      <div class="category-block">
+        <div class="category-header">
+          <div class="cat-icon-wrap">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11C16.17 7 15.12 7.32 14.19 8c-.69-.5-1.54-.8-2.46-.8-.92 0-1.77.3-2.46.8C8.34 7.32 7.29 7 6.35 7.11L8.46 5 7.4 3.94 3.68 7.66C2.63 8.71 2 10.15 2 11.64c0 2.21 1.34 4.1 3.25 4.86l.66 1.83c.19.54.7.9 1.27.9h.44c.45 0 .86-.27 1.05-.69l1.19-2.7C10.53 15.9 11.25 16 12 16c.75 0 1.47-.1 2.14-.26l1.19 2.7c.19.42.6.69 1.05.69h.44c.57 0 1.08-.36 1.27-.9l.66-1.83c1.91-.76 3.25-2.65 3.25-4.86 0-1.49-.63-2.93-1.68-3.98zM12 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
+            </svg>
+          </div>
+          <div class="cat-title-group">
+            <span class="cat-num">03.</span>
+            <h2 class="cat-title">Automation & Intelligence Logic</h2>
+          </div>
+        </div>
+        <ul class="service-list">
+          <li class="service-item">
+            <span class="service-name">WhatsApp Matrix Automation</span>
+            <span class="service-desc">We convert your website traffic directly into conversations. By deploying
+              interactive bot menus, we can autonomously qualify leads, answer pricing questions, and route high-value
+              inquiries directly to your sales team's phones in real-time.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Natural Language AI Bots</span>
+            <span class="service-desc">Standard chatbots are frustrating. We integrate advanced AI (NLP) trained
+              exclusively on your company's data. These systems understand context and nuance, successfully resolving up
+              to 70% of customer support tickets without human intervention.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Automated Lead Pipelines</span>
+            <span class="service-desc">Eliminate manual copy-pasting and data loss. We build zero-latency webhooks that
+              instantly capture website form data, populate your CRM, send a welcome email to the client, and notify
+              your team on Slack—all within 0.5 seconds.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Custom Data Extraction (Scraping)</span>
+            <span class="service-desc">Turn the internet into your private database. We engineer custom Python scripts
+              that autonomously navigate competitor websites or public directories, extract pricing or contact data, and
+              format it cleanly into spreadsheets for your analysts daily.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Internal Workflow Automation</span>
+            <span class="service-desc">We identify redundant manual tasks within your office and write scripts to
+              automate them. When a payment is collected in Stripe, our scripts can automatically generate an invoice,
+              update the accounting software, and issue a receipt.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="category-block">
+        <div class="category-header">
+          <div class="cat-icon-wrap">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+            </svg>
+          </div>
+          <div class="cat-title-group">
+            <span class="cat-num">04.</span>
+            <h2 class="cat-title">Cloud Infrastructure & Backend</h2>
+          </div>
+        </div>
+        <ul class="service-list">
+          <li class="service-item">
+            <span class="service-name">Cloud Server Provisioning</span>
+            <span class="service-desc">Physical servers are fragile and limited. We architect highly available, elastic
+              hosting environments using AWS, Google Cloud, or DigitalOcean. Your infrastructure automatically scales up
+              processing power during high traffic spikes, ensuring zero downtime.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Relational & NoSQL Databases</span>
+            <span class="service-desc">Poor database design causes software to freeze as it grows. We architect
+              logically sound, normalized database structures (PostgreSQL, MongoDB) capable of querying millions of rows
+              of transactional data in milliseconds without bottlenecking.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Automated CI/CD Pipelines</span>
+            <span class="service-desc">We establish Continuous Integration / Continuous Deployment protocols. This means
+              our engineers can write code, pass it through automated testing scripts, and push updates to your live
+              application without ever taking the system offline for "maintenance."</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Legacy System Migration Protocols</span>
+            <span class="service-desc">Operating on outdated tech puts your entire business at risk. We specialize in
+              the highly delicate process of lifting legacy data and active applications, mapping them to modern cloud
+              environments, and executing secure, lossless transfers.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Disaster Recovery & Redundancy</span>
+            <span class="service-desc">We assume hardware will eventually fail. To counter this, we deploy automated,
+              multi-region database clones and off-site backup snapshots. In the event of a catastrophic failure, your
+              system fails over to a backup, restoring operations in minutes.</span>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <footer class="doc-footer">
+      <div>CONFIDENTIAL & PROPRIETARY DOCUMENT</div>
+      <div>PAGE 02 OF 03</div>
+    </footer>
+  </div>
+
+  <div class="a4-page">
+    <header class="letterhead">
+      <div class="brand-group">
+        <svg class="brand-logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 22h20L12 2zm0 6l5.5 11h-11L12 8z" />
+        </svg>
+        <div class="letterhead-left">
+          <div class="company-name">Darion Technologies</div>
+          <div class="doc-type">Capabilities Overview & Briefing</div>
+        </div>
+      </div>
+      <div class="letterhead-right">
+        <div>REF: DT-TECH-01</div>
+        <div>ISSUED: APR 2026</div>
+      </div>
+    </header>
+
+    <main class="doc-body">
+      <div class="category-block">
+        <div class="category-header">
+          <div class="cat-icon-wrap">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+            </svg>
+          </div>
+          <div class="cat-title-group">
+            <span class="cat-num">05.</span>
+            <h2 class="cat-title">Analytics & Business Intelligence</h2>
+          </div>
+        </div>
+        <ul class="service-list">
+          <li class="service-item">
+            <span class="service-name">Precision Event Tracking</span>
+            <span class="service-desc">Stop guessing where your money is going. We implement advanced Google Analytics 4
+              and server-side tracking to monitor exact user acquisition channels. You will know precisely which ad
+              campaign or search term resulted in a closed sale.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Behavioral Heatmapping</span>
+            <span class="service-desc">We deploy session recording and heat-mapping technologies to visually watch how
+              users interact with your platform. We identify UI friction points, see where users get confused, and
+              redesign the interface based on hard behavioral data.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Data Visualization Dashboards</span>
+            <span class="service-desc">Executives need data at a glance. We engineer centralized dashboards that pull
+              from your CRM, website, and ad accounts, aggregating real-time sales, traffic, and operational metrics
+              into clean, highly readable visual graphs.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Conversion Rate Optimization (CRO)</span>
+            <span class="service-desc">We apply the scientific method to marketing. By executing split-testing protocols
+              (A/B testing), we pit two versions of a webpage against each other, mathematically isolating and
+              permanently deploying the version that yields the highest revenue.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Automated Reporting Logic</span>
+            <span class="service-desc">Replace manual spreadsheet building. We develop server-side scripts that
+              automatically query your databases at the end of each week, compile key performance indicators (KPIs), and
+              dispatch beautiful PDF reports to stakeholders.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="category-block">
+        <div class="category-header">
+          <div class="cat-icon-wrap">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
+            </svg>
+          </div>
+          <div class="cat-title-group">
+            <span class="cat-num">06.</span>
+            <h2 class="cat-title">Security & Sustained Operations</h2>
+          </div>
+        </div>
+        <ul class="service-list">
+          <li class="service-item">
+            <span class="service-name">Vulnerability Auditing & Penetration Testing</span>
+            <span class="service-desc">We act as white-hat hackers against your own systems. We conduct deep structural
+              code reviews to identify SQL injections, cross-site scripting (XSS), and backdoors, patching these
+              vulnerabilities before malicious actors can exploit them.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Military-Grade Encryption Implementation</span>
+            <span class="service-desc">Data breaches destroy reputations. We enforce strict AES-256 and TLS encryption
+              protocols across all data transmission and database storage layers, rendering intercepted client data
+              mathematically unreadable and useless to attackers.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Priority Technical SLAs</span>
+            <span class="service-desc">Software is a living entity requiring maintenance. We execute formal Service
+              Level Agreements (SLAs) with our partners, guaranteeing prioritized engineering support, rapid bug
+              resolution, and continuous framework patching to keep your systems future-proofed.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Automated Uptime Monitoring</span>
+            <span class="service-desc">We deploy digital tripwires. Our automated surveillance systems continuously ping
+              your servers 24/7. If CPU usage spikes dangerously or a server stops responding, our engineering team is
+              alerted instantly—often resolving the issue before you even notice.</span>
+          </li>
+          <li class="service-item">
+            <span class="service-name">Dedicated Engineering Augmentation</span>
+            <span class="service-desc">Rapidly scale your internal tech output. We supply pre-vetted, elite software
+              engineers from our Index0 division to temporarily integrate into your company, accelerating project
+              timelines without the permanent overhead of traditional hiring.</span>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <footer class="doc-footer">
+      <div>CONFIDENTIAL & PROPRIETARY DOCUMENT</div>
+      <div>PAGE 03 OF 03</div>
+    </footer>
+  </div>
+
+</body>
+
+</html>
